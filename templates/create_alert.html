@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Alert</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+        }
+
+        .container{
+            width:450px;
+            background:#fff;
+            padding:35px;
+            border-radius:15px;
+            box-shadow:0 10px 30px rgba(0,0,0,.3);
+            animation:fadeIn 1s ease;
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:25px;
+            color:#0f2027;
+        }
+
+        .form-group{
+            margin-bottom:18px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:6px;
+            font-weight:bold;
+            color:#333;
+        }
+
+        input,
+        textarea{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:15px;
+            transition:.3s;
+        }
+
+        textarea{
+            resize:none;
+            height:100px;
+        }
+
+        input:focus,
+        textarea:focus{
+            border-color:#007bff;
+            outline:none;
+            box-shadow:0 0 8px rgba(0,123,255,.4);
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            background:#007bff;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:17px;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        button:hover{
+            background:#0056b3;
+            transform:scale(1.02);
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(-40px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @media(max-width:500px){
+            .container{
+                width:90%;
+                padding:25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Create Alert</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Alert Title</label>
+            <input type="text" name="title" placeholder="Enter Alert Title" required>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" placeholder="Enter Description" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Priority</label>
+            <input type="text" name="priority" placeholder="High / Medium / Low">
+        </div>
+
+        <div class="form-group">
+            <label>Alert Type</label>
+            <input type="text" name="alert_type" placeholder="Emergency Type">
+        </div>
+
+        <div class="form-group">
+            <label>Date</label>
+            <input type="date" name="date">
+        </div>
+
+        <div class="form-group">
+            <label>Time</label>
+            <input type="time" name="time">
+        </div>
+
+        <button type="submit">🚨 Publish Alert</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
